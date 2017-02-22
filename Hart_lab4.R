@@ -16,10 +16,11 @@ print(newdata)
 WeightOrder <- order(InitWeight)
 # Organize dataframe using this order
 SortedNewdata <- newdata[WeightOrder,]
+print(SortedNewdata)
 
 # Save as .csv file
-write.csv(SortedNewdata, file="BioStatsLab4_SortedNewdata.csv")
-#??????????how remove row names???????????????
+write.csv(SortedNewdata, file="BioStatsLab4_SortedNewdata.csv", row.names=FALSE)
+
 
 
 #### Question 2
