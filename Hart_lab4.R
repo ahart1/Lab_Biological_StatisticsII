@@ -71,7 +71,7 @@ for(i in 1:9){
 # Part 2 of Question 3
 # These calculations assume data is formatted as a .csv with three columns: 
 # a species column (where species are labeled using numbers in sequential order), length, and age
-setwd("/Users/ahart2/Research/BioStatsIILab")
+setwd("/Users/arhart/Research/BioStatsIILab")
 AgeLengthData <- read.csv("agelength.csv")
 
 # Calculates number of animals in data set
@@ -87,7 +87,7 @@ for(i in 1:numAnimals){
   
   if(length(Animal)>1){
     # Produce a linear model lm() for rows associated with species i and saved in Animal
-    Age_Length_Regress <- lm(length~age, AgeLengthData[Animal,]) # this is for all data together
+    Age_Length_Regress <- lm(length~age, AgeLengthData[Animal,]) # References rows stored in Animal from main data source
     #plot(lm(length~age, AgeLengthData))
     
     # extract slope
@@ -100,13 +100,13 @@ for(i in 1:numAnimals){
 }
 
 print(Slope)
-Slope <- na.omit(Slope)
+Slope <- na.omit(Slope) # Remove NAs
 print(Slope)
 
 # Plot slopes using histogram
 hist(Slope, xaxs="i", yaxs="i",)
 # Include total number of species included
-legend(x=1.4, y=5, legend=(paste("n =",length(Slope),sep=" ")), bty="n")
+legend(x=1.2, y=5, legend=(paste("n =",length(Slope),sep=" ")), bty="n")
 
                            
 
