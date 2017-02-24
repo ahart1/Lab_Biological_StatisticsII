@@ -80,6 +80,7 @@ plotstuff("Laengelmavesi.csv", ColNum1="length", ColNum2="height")
 devil.loop <- function(N, year=2017){
   while(N>500){
     N<-N*0.91
+    # N <- rbinom(n=N,size=1, prob=0.91)
    # N <- N~Binomial(n=N, p=0.91)
     year<-year+1
   }
@@ -93,3 +94,37 @@ for(i in 1:2){
   Results[i] <- devil.loop(N=50000)
 }
 print(Results)
+
+# I don't understand how this works, what is the termonology?
+rbinom(n=1, size=1,prob=0.91)
+
+
+
+#### Question 5
+VectorA <- c(1,2,3,4,5,6,7,8,9,10)
+VectorB <- c(1,2,3,4,5,6,7,8,9,10)
+
+CalcRegress <- function(Vector1, Vector2, species, logplot=FALSE){
+  
+plot(Vector1, Vector2, main="species")
+
+if(length(Vector1) > 1 & length(Vector2) > 1) {
+  if(logplot==TRUE){
+    Results <- lm(log(Vector1)~log(Vector2))
+  }else{
+    Results <- lm(Vector1~Vector2)
+  }
+} else{
+  print("Insufficient data")
+}
+
+abline(Results)
+
+return(Results)
+}
+
+# is the lm() correct?
+# is the log correct?
+
+CalcRegress(VectorA, VectorB, species=Fish, logplot=FALSE)
+CalcRegress(VectorA, VectorB, species=Shark, logplot=TRUE)
