@@ -79,37 +79,34 @@ plotstuff("Laengelmavesi.csv", ColNum1="length", ColNum2="height")
 # It returns the year where abundance drops below the value provided (argument N=)
 devil.loop <- function(N, year=2017){
   while(N>500){
-    N<-N*0.91
-    # N <- rbinom(n=N,size=1, prob=0.91)
-   # N <- N~Binomial(n=N, p=0.91)
+    #N<-N*0.91   # For constant mortality
+    N <- rbinom(n=1,size=N, prob=0.91) # Tells us how many survived (number of successes)
     year<-year+1
   }
   return(year)
 }
 
-# I just need to make it stochastic
-
 Results <- NULL
-for(i in 1:2){
-  Results[i] <- devil.loop(N=50000)
+for(i in 1:1000){
+  Results[i] <- devil.loop(N=5000, year=2017)
 }
 print(Results)
 
-# I don't understand how this works, what is the termonology?
-rbinom(n=1, size=1,prob=0.91)
+hist(Results)
 
 
 
 #### Question 5
+# Vectors passed to this function must be of equal length
 VectorA <- c(1,2,3,4,5,6,7,8,9,10)
 VectorB <- c(1,2,3,4,5,6,7,8,9,10)
 
-CalcRegress <- function(Vector1, Vector2, species, logplot=FALSE){
+CalcRegress <- function(Vector1, Vector2, species, logcalc=FALSE){
   
 plot(Vector1, Vector2, main="species")
 
 if(length(Vector1) > 1 & length(Vector2) > 1) {
-  if(logplot==TRUE){
+  if(logcalc==TRUE){
     Results <- lm(log(Vector1)~log(Vector2))
   }else{
     Results <- lm(Vector1~Vector2)
