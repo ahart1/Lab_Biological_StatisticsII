@@ -98,6 +98,7 @@ hist(Results)
 
 #### Question 5
 # Vectors passed to this function must be of equal length
+# CalcRegress function requires that data be subdivided by species prior to passing to function
 VectorA <- c(1,2,3,4,5,6,7,8,9,10)
 VectorB <- c(1,2,3,4,5,6,7,8,9,10)
 
@@ -123,5 +124,13 @@ return(Results)
 # is the lm() correct?
 # is the log correct?
 
-CalcRegress(VectorA, VectorB, species=Fish, logplot=FALSE)
-CalcRegress(VectorA, VectorB, species=Shark, logplot=TRUE)
+
+CalcRegress(VectorA, VectorB, species=Fish, logcalc=FALSE)
+CalcRegress(VectorA, VectorB, species=Shark, logcalc=TRUE)
+
+
+# This portion of code subsets the data
+data <- read.csv("Laengelmavesi2.csv", header=TRUE)
+
+
+unique(data$species)
