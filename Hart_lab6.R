@@ -55,6 +55,7 @@ polygon(gomLLhigh$X[poly2],gomLLhigh$Y[poly2], col="dark green")
 #### Question 4
 setwd("/Users/arhart/Research/BioStatsIILab")
 Survey <- read.csv("neus_data.csv",header=TRUE)
+Survey$RowID <- 1:dim(Survey)[1]  # Add unique row number to help confirm that merge worked properly after data merged and reordered
 Names <- read.csv("neus_svspp.csv", header=TRUE)
 SurveyData <- merge(Survey, Names, by.x="SVSPP", by.y="SVSPP")
 # Double check that species named the correct way/merge worked the way we thought it should
